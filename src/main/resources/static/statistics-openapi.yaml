@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: 'URL Statistics Microservice'
+paths:
+  /statistics/{id}:
+    get:
+      operationId: retrieveURL
+      summary: Retrieve the original URL
+      description: Fetches the original URL associated with the given short ID and returns it.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The shortened URL's unique identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The original URL.
+          content:
+            text/plain:
+                schema:
+                  type: string
+                  example: "https://example.com"
+        '404':
+          description: Short URL not found.
+        '500':
+          description: Internal server error.
